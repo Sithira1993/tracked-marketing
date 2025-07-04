@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export function HeroSection() {
@@ -73,78 +73,293 @@ export function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Right Content - Mock Dashboard */}
+          {/* Right Content - Multiple Sophisticated Screens */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            className="relative h-[600px] w-full"
           >
-            <div className="bg-white rounded-2xl shadow-2xl p-8 transform rotate-3 hover:rotate-0 transition-transform duration-500">
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center space-x-3">
+            {/* Main Dashboard Screen */}
+            <motion.div
+              initial={{ opacity: 0, y: 20, rotate: -2 }}
+              animate={{ opacity: 1, y: 0, rotate: -2 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="absolute top-0 left-0 w-full max-w-md bg-white rounded-xl shadow-2xl p-6 z-30 transform"
+              style={{ transform: "rotate(-2deg) translateX(-10px)" }}
+            >
+              {/* Browser Bar */}
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b">
+                <div className="flex gap-1">
                   <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                   <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                 </div>
-                <div className="text-sm text-gray-500">
+                <div className="flex-1 text-center">
+                  <div className="bg-gray-100 rounded px-3 py-1 text-xs text-gray-600">
+                    tracked.lk/dashboard
+                  </div>
+                </div>
+              </div>
+
+              {/* Dashboard Content */}
+              <div className="space-y-4">
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-2">Live Orders</h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="bg-blue-50 rounded-lg p-3">
+                      <div className="text-2xl font-bold text-blue-600">24</div>
+                      <div className="text-xs text-blue-600">Active</div>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-3">
+                      <div className="text-2xl font-bold text-green-600">
+                        12
+                      </div>
+                      <div className="text-xs text-green-600">Completed</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-2 text-sm">
+                    Recent Activity
+                  </h4>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 bg-gray-50 rounded p-2">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <div className="text-xs">
+                        Order #ABC123 milestone updated
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 bg-gray-50 rounded p-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <div className="text-xs">
+                        Payment received for #DEF456
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Mobile Interface */}
+            <motion.div
+              initial={{ opacity: 0, x: 50, rotate: 8 }}
+              animate={{ opacity: 1, x: 0, rotate: 8 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="absolute top-20 right-0 w-48 bg-gray-900 rounded-xl shadow-2xl overflow-hidden z-20"
+              style={{ transform: "rotate(8deg) translateX(20px)" }}
+            >
+              {/* Phone Frame */}
+              <div className="bg-gray-900 p-1 rounded-xl">
+                <div className="bg-white rounded-lg overflow-hidden">
+                  {/* Status Bar */}
+                  <div className="bg-black text-white px-3 py-1 text-xs flex justify-between items-center">
+                    <span>9:41</span>
+                    <div className="flex gap-1">
+                      <div className="w-4 h-2 bg-white rounded-sm"></div>
+                    </div>
+                  </div>
+
+                  {/* App Header */}
+                  <div className="bg-purple-600 text-white p-3">
+                    <h3 className="font-bold text-sm">Field Scanner</h3>
+                  </div>
+
+                  {/* Scan Interface */}
+                  <div className="p-3 space-y-3">
+                    <div className="bg-gray-100 rounded-lg p-3 text-center">
+                      <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-400 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                        <div className="text-white text-xs">QR</div>
+                      </div>
+                      <div className="text-xs font-medium">Scan to Update</div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <div className="text-xs font-medium text-gray-900">
+                        Order #ABC123
+                      </div>
+                      <div className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">
+                        In Progress
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Client Tracking View */}
+            <motion.div
+              initial={{ opacity: 0, y: 30, rotate: 3 }}
+              animate={{ opacity: 1, y: 0, rotate: 3 }}
+              transition={{ duration: 1, delay: 0.7 }}
+              className="absolute bottom-0 left-8 w-80 bg-white rounded-xl shadow-2xl p-5 z-25"
+              style={{ transform: "rotate(3deg)" }}
+            >
+              {/* Browser Bar */}
+              <div className="flex items-center gap-2 mb-4 pb-2 border-b">
+                <div className="flex gap-1">
+                  <div className="w-2 h-2 bg-red-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                </div>
+                <div className="text-xs text-gray-500 ml-2">
                   tracked.lk/status/ABC123
                 </div>
               </div>
 
-              <div className="space-y-4">
+              {/* Client View */}
+              <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-semibold text-lg text-gray-900">
-                    Order #ABC123
-                  </h3>
-                  <Badge className="bg-green-100 text-green-800">
+                  <h3 className="font-bold text-gray-900">Order #ABC123</h3>
+                  <div className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
                     75% Complete
-                  </Badge>
+                  </div>
                 </div>
 
-                <div className="w-full bg-gray-200 rounded-full h-3">
-                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-3 rounded-full w-3/4"></div>
+                {/* Progress Bar */}
+                <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full w-3/4"></div>
                 </div>
 
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                {/* Timeline */}
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3">
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                    <div className="flex-1">
+                      <div className="text-xs font-medium">Order placed</div>
+                      <div className="text-xs text-gray-500">
+                        Dec 20, 9:00 AM
+                      </div>
                     </div>
-                    <span className="text-gray-900">Order placed</span>
-                    <span className="text-gray-500 text-sm ml-auto">
-                      Dec 20, 9:00 AM
-                    </span>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                    <div className="flex-1">
+                      <div className="text-xs font-medium">
+                        Materials sourced
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        Dec 21, 2:30 PM
+                      </div>
                     </div>
-                    <span className="text-gray-900">Materials sourced</span>
-                    <span className="text-gray-500 text-sm ml-auto">
-                      Dec 21, 2:30 PM
-                    </span>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center animate-pulse">
-                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
+                    <div className="flex-1">
+                      <div className="text-xs font-medium text-blue-600">
+                        In production
+                      </div>
+                      <div className="text-xs text-blue-600">Now</div>
                     </div>
-                    <span className="text-gray-900 font-medium">
-                      In production
-                    </span>
-                    <span className="text-blue-600 text-sm ml-auto">Now</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
-                    <span className="text-gray-500">Quality check</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
-                    <span className="text-gray-500">Ready for delivery</span>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
+
+            {/* Analytics Card */}
+            <motion.div
+              initial={{ opacity: 0, x: -30, rotate: -5 }}
+              animate={{ opacity: 1, x: 0, rotate: -5 }}
+              transition={{ duration: 1, delay: 0.9 }}
+              className="absolute top-32 right-12 w-56 bg-white rounded-lg shadow-xl p-4 z-10"
+              style={{ transform: "rotate(-5deg)" }}
+            >
+              <div className="space-y-3">
+                <h4 className="font-bold text-gray-900 text-sm">
+                  Revenue Insights
+                </h4>
+
+                {/* Mini Chart */}
+                <div className="h-16 bg-gradient-to-r from-green-100 to-blue-100 rounded-lg p-2 flex items-end justify-between">
+                  <div
+                    className="w-2 bg-green-400 rounded-t"
+                    style={{ height: "60%" }}
+                  ></div>
+                  <div
+                    className="w-2 bg-green-500 rounded-t"
+                    style={{ height: "80%" }}
+                  ></div>
+                  <div
+                    className="w-2 bg-blue-400 rounded-t"
+                    style={{ height: "40%" }}
+                  ></div>
+                  <div
+                    className="w-2 bg-blue-500 rounded-t"
+                    style={{ height: "90%" }}
+                  ></div>
+                  <div
+                    className="w-2 bg-purple-400 rounded-t"
+                    style={{ height: "70%" }}
+                  ></div>
+                  <div
+                    className="w-2 bg-purple-500 rounded-t"
+                    style={{ height: "100%" }}
+                  ></div>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <div>
+                    <div className="text-lg font-bold text-green-600">
+                      LKR 2.4M
+                    </div>
+                    <div className="text-xs text-gray-500">This month</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-xs text-green-600 font-medium">
+                      +23%
+                    </div>
+                    <div className="text-xs text-gray-500">vs last month</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Invoice Management */}
+            <motion.div
+              initial={{ opacity: 0, y: -20, rotate: 6 }}
+              animate={{ opacity: 1, y: 0, rotate: 6 }}
+              transition={{ duration: 1, delay: 1.1 }}
+              className="absolute bottom-16 right-4 w-64 bg-white rounded-lg shadow-xl p-4 z-15"
+              style={{ transform: "rotate(6deg)" }}
+            >
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <h4 className="font-bold text-gray-900 text-sm">Invoices</h4>
+                  <div className="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded">
+                    3 Pending
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between bg-gray-50 rounded p-2">
+                    <div>
+                      <div className="text-xs font-medium">#INV-001</div>
+                      <div className="text-xs text-gray-500">Order #ABC123</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-xs font-bold">LKR 45,000</div>
+                      <div className="bg-green-100 text-green-800 text-xs px-1 rounded">
+                        Paid
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between bg-gray-50 rounded p-2">
+                    <div>
+                      <div className="text-xs font-medium">#INV-002</div>
+                      <div className="text-xs text-gray-500">Order #DEF456</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-xs font-bold">LKR 28,500</div>
+                      <div className="bg-orange-100 text-orange-800 text-xs px-1 rounded">
+                        Pending
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
