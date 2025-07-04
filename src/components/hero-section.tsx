@@ -9,9 +9,22 @@ import Link from "next/link";
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden">
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-500 opacity-90" />
-      <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
+      {/* Gradient Background with fallbacks */}
+      <div
+        className="absolute inset-0 opacity-90"
+        style={{
+          background:
+            "linear-gradient(135deg, #7c3aed 0%, #2563eb 50%, #06b6d4 100%)",
+          backgroundColor: "#7c3aed", // Fallback for older browsers
+        }}
+      />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(255,255,255,0.2) 0%, transparent 100%)",
+        }}
+      />
 
       <div className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-16 md:py-24 lg:py-32">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -31,9 +44,7 @@ export function HeroSection() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
               Order tracking
               <br />
-              <span className="bg-gradient-to-r from-cyan-300 to-pink-300 bg-clip-text text-transparent">
-                infrastructure
-              </span>
+              <span className="text-cyan-200">infrastructure</span>
               <br />
               <span className="text-cyan-200">to grow your</span>
               <br />
