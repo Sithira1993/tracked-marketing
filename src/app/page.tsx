@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { AnimatedLogo } from "@/components/animated-logo";
 import { HeroSection } from "@/components/hero-section";
 import { FeaturesSection } from "@/components/features-section";
 import { BusinessTypesSection } from "@/components/business-types-section";
@@ -11,7 +12,8 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       {/* Navigation */}
       <nav className="flex items-center justify-between px-6 py-4 md:px-12 lg:px-16">
-        <div className="flex items-center">
+        <div className="flex items-center gap-3">
+          <AnimatedLogo className="w-10 h-10" />
           <div className="text-2xl font-bold text-gray-900">tracked.lk</div>
         </div>
         <div className="hidden md:flex items-center space-x-8">
@@ -129,7 +131,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <div className="text-2xl font-bold mb-4">tracked.lk</div>
+              <div className="flex items-center gap-3 mb-4">
+                <AnimatedLogo className="w-8 h-8" />
+                <div className="text-2xl font-bold">tracked.lk</div>
+              </div>
               <p className="text-gray-400">
                 Order tracking and invoicing built for SMEs
               </p>

@@ -1,0 +1,1 @@
+{"stdout":"yarn add v1.22.21\n[1/4] Resolving packages...\n[2/4] Fetching packages...\ninfo Visit https://yarnpkg.com/en/docs/cli/add for documentation about this command.\n","stderr":"error posthog-node@5.1.1: The engine \"node\" is incompatible with this module. Expected version \">=20\". Got \"18.20.4\"\nerror Found incompatible module.\n"}
