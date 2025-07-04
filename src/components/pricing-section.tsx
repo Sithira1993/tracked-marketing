@@ -10,10 +10,10 @@ import {
   Star,
   Zap,
   ArrowRight,
-  Users,
-  Clock,
   Shield,
   Sparkles,
+  Gift,
+  Calendar,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -30,23 +30,23 @@ export function PricingSection() {
 
     // In a real app, this would integrate with payment processing
     alert(
-      `Thanks for your interest! We&apos;ll contact you at ${email} with payment details.`
+      `Thanks for joining the waitlist! We&apos;ll contact you at ${email} with payment details to secure your early bird spot.`
     );
     setIsLoading(false);
     setEmail("");
   };
 
-  const features = [
-    "Unlimited orders and milestones",
-    "Real-time client tracking links",
-    "Mobile QR/barcode scanning",
-    "Photo and note attachments",
-    "Invoice management system",
-    "Offline-first mobile support",
-    "Custom milestone builder",
-    "Multi-user team access",
-    "Email notifications",
-    "Priority customer support",
+  const waitlistBenefits = [
+    "Priority access to beta launch",
+    "50% off lifetime discount on subscription",
+    "Exclusive onboarding support",
+    "Direct feedback channel to founders",
+    "Early feature previews and demos",
+    "No-risk 60-day money-back guarantee",
+    "Locked-in early bird pricing forever",
+    "Free migration from existing tools",
+    "Premium customer support",
+    "Quarterly founder office hours",
   ];
 
   return (
@@ -64,14 +64,14 @@ export function PricingSection() {
         >
           <Badge className="mb-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700">
             <Sparkles className="mr-2 h-4 w-4" />
-            Limited Time Offer
+            Early Access Waitlist
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Simple, transparent pricing
+            Join the early bird waitlist
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Join the first 1000 businesses to transform their client experience.
-            Special launch pricing available for early adopters.
+            Be among the first businesses to transform client experience. Secure
+            your spot with exclusive early bird benefits.
           </p>
         </motion.div>
 
@@ -87,7 +87,7 @@ export function PricingSection() {
               <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 px-6 text-center">
                 <div className="flex items-center justify-center gap-2">
                   <Star className="h-5 w-5 fill-current" />
-                  <span className="font-semibold">Early Adopter Special</span>
+                  <span className="font-semibold">Early Bird Waitlist</span>
                   <Star className="h-5 w-5 fill-current" />
                 </div>
               </div>
@@ -98,45 +98,58 @@ export function PricingSection() {
                   <div className="mb-8">
                     <div className="flex items-baseline gap-3 mb-4">
                       <div className="text-5xl font-bold text-gray-900">
-                        LKR 1,000
+                        LKR 2,000
                       </div>
                       <div className="text-gray-500">
-                        <div className="text-lg line-through">LKR 2,000</div>
-                        <div className="text-sm">per month</div>
+                        <div className="text-sm">one-time</div>
+                        <div className="text-sm">waitlist fee</div>
                       </div>
                     </div>
 
                     <div className="flex items-center gap-2 mb-4">
                       <Badge className="bg-green-100 text-green-800 hover:bg-green-200">
-                        <Users className="mr-1 h-3 w-3" />
-                        50% OFF
+                        <Gift className="mr-1 h-3 w-3" />
+                        50% OFF Forever
                       </Badge>
                       <Badge variant="outline">
-                        <Clock className="mr-1 h-3 w-3" />
-                        First 4 years
+                        <Calendar className="mr-1 h-3 w-3" />
+                        Beta: Aug 2025
                       </Badge>
                     </div>
 
                     <p className="text-gray-600 text-sm mb-6">
-                      <strong>Limited to first 1000 users only.</strong> After 4
-                      years, pricing returns to standard LKR 2,000/month.
+                      <strong>Secure your early bird benefits now.</strong> When
+                      we launch, you&apos;ll get 50% off our subscription
+                      pricing for life, plus exclusive perks.
                     </p>
+
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                      <h4 className="font-semibold text-blue-900 mb-2">
+                        What happens next?
+                      </h4>
+                      <ul className="text-sm text-blue-800 space-y-1">
+                        <li>• Pay LKR 2,000 to secure your waitlist spot</li>
+                        <li>• Get exclusive updates on development progress</li>
+                        <li>• Receive beta access in August 2025</li>
+                        <li>• Enjoy 50% off subscription when we launch</li>
+                      </ul>
+                    </div>
 
                     <div className="flex items-center gap-2 text-sm text-gray-500 mb-8">
                       <Shield className="h-4 w-4" />
-                      <span>30-day money-back guarantee</span>
+                      <span>60-day money-back guarantee</span>
                     </div>
                   </div>
 
-                  {/* Features List */}
+                  {/* Benefits List */}
                   <div>
                     <h3 className="font-semibold text-gray-900 mb-4">
-                      Everything included:
+                      Early bird benefits:
                     </h3>
                     <div className="space-y-3">
-                      {features.map((feature, index) => (
+                      {waitlistBenefits.map((benefit, index) => (
                         <motion.div
-                          key={feature}
+                          key={benefit}
                           initial={{ opacity: 0, x: -20 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.5, delay: index * 0.05 }}
@@ -146,7 +159,7 @@ export function PricingSection() {
                           <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
                             <Check className="h-3 w-3 text-green-600" />
                           </div>
-                          <span className="text-gray-700">{feature}</span>
+                          <span className="text-gray-700">{benefit}</span>
                         </motion.div>
                       ))}
                     </div>
@@ -160,10 +173,10 @@ export function PricingSection() {
                       <Zap className="h-8 w-8 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                      Ready to get started?
+                      Ready to join the waitlist?
                     </h3>
                     <p className="text-gray-600">
-                      Join hundreds of SMEs already using tracked.lk
+                      Secure your early bird spot today
                     </p>
                   </div>
 
@@ -192,7 +205,7 @@ export function PricingSection() {
                         </div>
                       ) : (
                         <>
-                          Start your trial{" "}
+                          Join waitlist for LKR 2,000{" "}
                           <ArrowRight className="ml-2 h-5 w-5" />
                         </>
                       )}
@@ -200,7 +213,7 @@ export function PricingSection() {
                   </form>
 
                   <p className="text-xs text-gray-500 text-center mt-4">
-                    By signing up, you agree to our Terms of Service and Privacy
+                    By joining, you agree to our Terms of Service and Privacy
                     Policy
                   </p>
 
@@ -209,15 +222,15 @@ export function PricingSection() {
                     <div className="grid grid-cols-2 gap-4 text-center">
                       <div>
                         <div className="text-2xl font-bold text-purple-600">
-                          847
+                          421
                         </div>
                         <div className="text-xs text-gray-600">
-                          Early adopters
+                          Waitlist members
                         </div>
                       </div>
                       <div>
                         <div className="text-2xl font-bold text-purple-600">
-                          153
+                          579
                         </div>
                         <div className="text-xs text-gray-600">
                           Spots remaining
@@ -244,22 +257,42 @@ export function PricingSection() {
             <div className="grid md:grid-cols-2 gap-6 text-left">
               <div className="bg-white rounded-lg p-6 shadow-sm">
                 <h4 className="font-semibold text-gray-900 mb-2">
-                  What happens after 4 years?
+                  What&apos;s the difference between waitlist and subscription?
                 </h4>
                 <p className="text-gray-600 text-sm">
-                  Your pricing will automatically adjust to the standard rate of
-                  LKR 2,000/month. You&apos;ll receive advance notice and can
-                  cancel anytime.
+                  The LKR 2,000 waitlist fee secures your early bird benefits.
+                  When we launch, you&apos;ll pay a monthly subscription (50%
+                  off for life) to use the platform.
                 </p>
               </div>
               <div className="bg-white rounded-lg p-6 shadow-sm">
                 <h4 className="font-semibold text-gray-900 mb-2">
-                  Can I cancel anytime?
+                  Can I get a refund if I change my mind?
                 </h4>
                 <p className="text-gray-600 text-sm">
-                  Yes, you can cancel your subscription at any time. No
-                  long-term contracts or hidden fees. Your data remains
-                  accessible for 30 days after cancellation.
+                  Yes! We offer a 60-day money-back guarantee. If you&apos;re
+                  not satisfied with the beta experience, we&apos;ll refund your
+                  waitlist fee completely.
+                </p>
+              </div>
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <h4 className="font-semibold text-gray-900 mb-2">
+                  When will the product be ready?
+                </h4>
+                <p className="text-gray-600 text-sm">
+                  Beta launch is scheduled for August 2025, with the stable
+                  version launching in December 2025. Waitlist members get
+                  priority access to all releases.
+                </p>
+              </div>
+              <div className="bg-white rounded-lg p-6 shadow-sm">
+                <h4 className="font-semibold text-gray-900 mb-2">
+                  How much will the subscription cost?
+                </h4>
+                <p className="text-gray-600 text-sm">
+                  Standard pricing will be announced closer to launch, but early
+                  birds get 50% off for life. We estimate savings of LKR 1,000+
+                  per month.
                 </p>
               </div>
             </div>

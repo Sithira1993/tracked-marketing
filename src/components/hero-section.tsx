@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
@@ -55,14 +54,6 @@ export function HeroSection() {
                 <Link href="#pricing">
                   Get started <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="border-white/30 text-white hover:bg-white/10 text-lg px-8 py-6"
-              >
-                <Play className="mr-2 h-5 w-5" />
-                Watch demo
               </Button>
             </div>
 

@@ -1,27 +1,9 @@
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import {
-  CheckCircle,
-  QrCode,
-  Smartphone,
-  TrendingUp,
-  Clock,
-  Shield,
-  Users,
-  Eye,
-  DollarSign,
-} from "lucide-react";
 import Link from "next/link";
 import { HeroSection } from "@/components/hero-section";
 import { FeaturesSection } from "@/components/features-section";
 import { BusinessTypesSection } from "@/components/business-types-section";
+import { TimelineSection } from "@/components/timeline-section";
 import { PricingSection } from "@/components/pricing-section";
 
 export default function Home() {
@@ -46,6 +28,12 @@ export default function Home() {
             How it works
           </Link>
           <Link
+            href="#roadmap"
+            className="text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            Roadmap
+          </Link>
+          <Link
             href="#pricing"
             className="text-gray-600 hover:text-gray-900 transition-colors"
           >
@@ -53,9 +41,6 @@ export default function Home() {
           </Link>
         </div>
         <div className="flex items-center space-x-4">
-          <Button variant="ghost" className="hidden md:flex">
-            Sign in
-          </Button>
           <Button asChild>
             <Link href="#pricing">Get started</Link>
           </Button>
@@ -132,6 +117,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Timeline Section */}
+      <TimelineSection />
 
       {/* Pricing Section */}
       <PricingSection />
