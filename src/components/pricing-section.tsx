@@ -14,26 +14,78 @@ import {
   Sparkles,
   Gift,
   Calendar,
+  CheckCircle,
+  AlertCircle,
 } from "lucide-react";
 import { useState } from "react";
 
 export function PricingSection() {
-  const [email, setEmail] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    companyName: "",
+    industry: "",
+    orderVolume: "",
+    phone: "",
+  });
   const [isLoading, setIsLoading] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+  const [message, setMessage] = useState("");
+
+  // Replace this with your actual Google Apps Script Web App URL
+  const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbyFcCuEUhpDBp7XRTQ2nVlKN3GToaFh4sHJfIi6E8X5ATv-8pwAUEQo1AK5Ewc0QI2z8A/exec";
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setSubmitStatus("idle");
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors", // Required for Google Apps Script
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    // In a real app, this would integrate with payment processing
-    alert(
-      `Thanks for joining the waitlist! We&apos;ll contact you at ${email} with payment details to secure your early bird spot.`
-    );
-    setIsLoading(false);
-    setEmail("");
+      // Since we're using no-cors mode, we can't read the response
+      // We'll assume success and show a success message
+      setSubmitStatus("success");
+      setMessage(
+        `Thanks for joining the waitlist! We'll contact you at ${formData.email} with payment details to secure your early bird spot.`
+      );
+
+      // Reset form
+      setFormData({
+        email: "",
+        companyName: "",
+        industry: "",
+        orderVolume: "",
+        phone: "",
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitStatus("error");
+      setMessage(
+        "There was an error submitting your information. Please try again or contact us directly."
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const waitlistBenefits = [
@@ -47,6 +99,26 @@ export function PricingSection() {
     "Free migration from existing tools",
     "Premium customer support",
     "Quarterly founder office hours",
+  ];
+
+  const industries = [
+    "Construction & Contracting",
+    "Manufacturing & Production",
+    "Logistics & Delivery",
+    "Professional Services",
+    "Healthcare & Medical",
+    "Food & Beverage",
+    "Retail & E-commerce",
+    "Technology & Software",
+    "Other",
+  ];
+
+  const orderVolumes = [
+    "1-10 orders/month",
+    "11-50 orders/month",
+    "51-100 orders/month",
+    "101-500 orders/month",
+    "500+ orders/month",
   ];
 
   return (
@@ -180,14 +252,99 @@ export function PricingSection() {
                     </p>
                   </div>
 
+                  {/* Success/Error Messages */}
+                  {submitStatus === "success" && (
+                    <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle className="h-5 w-5 text-green-600" />
+                        <div className="text-sm text-green-800 font-medium">
+                          Success!
+                        </div>
+                      </div>
+                      <p className="text-sm text-green-700 mt-1">{message}</p>
+                    </div>
+                  )}
+
+                  {submitStatus === "error" && (
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                      <div className="flex items-center gap-2">
+                        <AlertCircle className="h-5 w-5 text-red-600" />
+                        <div className="text-sm text-red-800 font-medium">
+                          Error
+                        </div>
+                      </div>
+                      <p className="text-sm text-red-700 mt-1">{message}</p>
+                    </div>
+                  )}
+
                   <form onSubmit={handleSignup} className="space-y-4">
                     <div>
                       <Input
                         type="email"
-                        placeholder="Enter your business email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        name="email"
+                        placeholder="Business email address *"
+                        value={formData.email}
+                        onChange={handleInputChange}
                         required
+                        className="h-12 text-lg"
+                      />
+                    </div>
+
+                    <div>
+                      <Input
+                        type="text"
+                        name="companyName"
+                        placeholder="Company name *"
+                        value={formData.companyName}
+                        onChange={handleInputChange}
+                        required
+                        className="h-12 text-lg"
+                      />
+                    </div>
+
+                    <div>
+                      <select
+                        name="industry"
+                        value={formData.industry}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full h-12 text-lg px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      >
+                        <option value="">Select your industry *</option>
+                        {industries.map((industry) => (
+                          <option key={industry} value={industry}>
+                            {industry}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <select
+                        name="orderVolume"
+                        value={formData.orderVolume}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full h-12 text-lg px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      >
+                        <option value="">
+                          Expected monthly order volume *
+                        </option>
+                        {orderVolumes.map((volume) => (
+                          <option key={volume} value={volume}>
+                            {volume}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <Input
+                        type="tel"
+                        name="phone"
+                        placeholder="Phone number (optional)"
+                        value={formData.phone}
+                        onChange={handleInputChange}
                         className="h-12 text-lg"
                       />
                     </div>

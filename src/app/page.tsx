@@ -58,11 +58,19 @@ export default function Home() {
           <p className="text-center text-sm text-gray-500 mb-8">
             Trusted by growing businesses across Sri Lanka
           </p>
-          <div className="flex justify-center items-center space-x-12 opacity-60">
-            <div className="text-2xl font-bold text-gray-400">TechCorp</div>
-            <div className="text-2xl font-bold text-gray-400">BuildPro</div>
-            <div className="text-2xl font-bold text-gray-400">ServiceMax</div>
-            <div className="text-2xl font-bold text-gray-400">DeliveryHub</div>
+          <div className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 opacity-60 flex-wrap">
+            <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-400">
+              TechCorp
+            </div>
+            <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-400">
+              BuildPro
+            </div>
+            <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-400">
+              ServiceMax
+            </div>
+            <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-400">
+              DeliveryHub
+            </div>
           </div>
         </div>
       </section>
