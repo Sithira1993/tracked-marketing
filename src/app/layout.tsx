@@ -221,11 +221,42 @@ export default function RootLayout({
         {/* DNS prefetch for external resources */}
         <link rel="dns-prefetch" href="https://script.google.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+        {/* Additional SEO optimizations */}
+        <meta name="theme-color" content="#7c3aed" />
+        <meta name="msapplication-TileColor" content="#7c3aed" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+
+        {/* Preload critical resources */}
+        <link
+          rel="preload"
+          href="/tracked-logo.svg"
+          as="image"
+          type="image/svg+xml"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        {/* Skip to main content for accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-purple-600 text-white p-2 z-50"
+        >
+          Skip to main content
+        </a>
+
+        {/* Main content wrapper */}
+        <main id="main-content">{children}</main>
+
+        {/* Fallback for JavaScript disabled */}
+        <noscript>
+          <div className="bg-yellow-50 border border-yellow-200 p-4 text-center">
+            <p className="text-yellow-800">
+              For the best experience, please enable JavaScript in your browser.
+            </p>
+          </div>
+        </noscript>
       </body>
     </html>
   );

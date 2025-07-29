@@ -1,36 +1,58 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = "https://tracked.lk";
+  const currentDate = new Date();
+
   return [
     {
-      url: "https://tracked.lk",
-      lastModified: new Date(),
+      url: baseUrl,
+      lastModified: currentDate,
       changeFrequency: "daily",
       priority: 1,
     },
     {
-      url: "https://tracked.lk/#features",
-      lastModified: new Date(),
+      url: `${baseUrl}/#features`,
+      lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
-      url: "https://tracked.lk/#how-it-works",
-      lastModified: new Date(),
+      url: `${baseUrl}/#how-it-works`,
+      lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.7,
     },
     {
-      url: "https://tracked.lk/#roadmap",
-      lastModified: new Date(),
+      url: `${baseUrl}/#roadmap`,
+      lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.6,
     },
     {
-      url: "https://tracked.lk/#pricing",
-      lastModified: new Date(),
+      url: `${baseUrl}/#pricing`,
+      lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.9,
+    },
+    // Add potential future pages
+    {
+      url: `${baseUrl}/about`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/support`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.4,
     },
   ];
 }

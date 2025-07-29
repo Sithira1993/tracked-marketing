@@ -5,35 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 
 export function HeroSection() {
-  const [mounted, setMounted] = useState(false);
-  const [particles, setParticles] = useState<
-    Array<{
-      id: number;
-      x: number;
-      y: number;
-      targetX: number;
-      targetY: number;
-      duration: number;
-    }>
-  >([]);
-
-  useEffect(() => {
-    setMounted(true);
-    // Generate particle data only on client
-    const particleData = Array.from({ length: 20 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      targetX: Math.random() * 100,
-      targetY: Math.random() * 100,
-      duration: Math.random() * 10 + 20,
-    }));
-    setParticles(particleData);
-  }, []);
-
   return (
     <section className="relative overflow-hidden min-h-screen">
       {/* Animated Gradient Background */}
