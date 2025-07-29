@@ -18,6 +18,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { useState } from "react";
+import posthog from "posthog-js";
 
 export function PricingSection() {
   const [formData, setFormData] = useState({
@@ -62,21 +63,16 @@ export function PricingSection() {
         body: JSON.stringify(formData),
       });
 
-      // Since we're using no-cors mode, we can't read the response
-      // We'll assume success and show a success message
-      setSubmitStatus("success");
-      setMessage(
-        `Thanks for joining the waitlist! We'll contact you at ${formData.email} with payment details to secure your early bird spot.`
-      );
-
-      // Reset form
-      setFormData({
-        email: "",
-        companyName: "",
-        industry: "",
-        orderVolume: "",
-        phone: "",
+      posthog.capture("waitlist_joined", {
+        email: formData.email,
+        companyName: formData.companyName,
+        industry: formData.industry,
+        orderVolume: formData.orderVolume,
       });
+
+      // Since we're using no-cors mode, we can't read the response
+      // We'll assume success and redirect.
+      window.location.href = "https://app.trackmyorder.lk/";
     } catch (error) {
       console.error("Error submitting form:", error);
       setSubmitStatus("error");
